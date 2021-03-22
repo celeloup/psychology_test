@@ -1,0 +1,104 @@
+.dilemme .big_title {
+	margin-bottom: 30px;
+}
+
+.dilemme p {
+	font-size: 16px;
+	text-align: justify;
+}
+
+.dilemme .proposal {
+	font-size: 19px;
+	text-align: center;
+	margin-top: 40px;
+}
+
+.dilemme .form-group {
+	margin: 20px 0 50px 0;
+}
+
+.dilemme .intro {
+	font-size: 15px;
+	font-style: italic;
+	text-align: center;
+	margin-bottom: 25px;
+}
+
+.opinion_scale {
+	display: flex;
+	margin-bottom: 5px;
+}
+
+.opinion_scale .btn {
+	width: 100%;
+	text-align: center;
+	color: rgba(0, 114, 214, 0.6);
+	background-color: transparent;
+	border-radius: 0px;
+	height: 60px;
+	font-size: 26px;
+	border-bottom: 1px solid rgba(0, 114, 214, 0.6);
+	border-top: 1px solid rgba(0, 114, 214, 0.6);
+	border-right: 1px solid rgba(0, 114, 214, 0.6);
+	border-left: none;
+}
+
+.opinion_scale .btn:hover {
+	background-color: rgb(0, 114, 214, 0.1);
+}
+
+.opinion_scale .btn:focus {
+	outline:none;
+	box-shadow: none;
+  }
+  
+.opinion_scale .btn:active {
+	color: rgba(0, 114, 214, 0.6);
+	border: 1px solid rgba(0, 114, 214, 0.6);
+  }
+
+.opinion_scale .btn:first-child {
+	border-left: 1px solid rgba(0, 114, 214, 0.6);
+	border-radius: 3px 0px 0px 3px;
+}
+
+.opinion_scale .btn:last-child {
+	border-radius: 0px 3px 3px 0px;
+}
+
+.opinion_scale .btn[selected="true"]
+{
+  background-color: rgb(0, 114, 214, 0.3);
+  border: 2px solid rgba(0, 114, 214);
+  color: rgba(0, 114, 214);
+}
+
+.opinion_scale .btn i {
+	font-size: 36px;
+	margin:0;
+	margin-top: -5px;
+}
+
+.programme {
+	margin: auto;
+}
+
+.dilemme label {
+	width: 100%;
+	text-align: center;
+	color: rgba(0, 114, 214, 0.6);
+	font-size: 16px;
+	margin-bottom: 10px;
+}
+
+@media screen and (max-width: 500px) {
+	.opinion_scale .btn {
+		height: 50px;
+	}
+	.opinion_scale .btn i {
+		font-size: 26px;
+		margin:0;
+		margin-top: -5px;
+		z-index: 0;
+	}
+}

@@ -1,0 +1,41 @@
+.dashboard table {
+	min-width: 700px;
+	empty-cells: show;
+	table-layout: auto;
+	margin: 30px 0;
+}
+
+.dashboard th {
+	position: -webkit-sticky;
+  	position: sticky;
+	top:0px;
+	background-color: rgb(0, 114, 214);
+	color: white;
+	font-size: 18px;
+}
+
+th, td {
+	width: 20%;
+	padding: 10px;
+	/* text-align: center; */
+	border-right: 2px solid white;
+}
+
+td {
+	font-size: 15px;
+	
+}
+
+tr:nth-child(even) {
+	background-color: rgb(0, 114, 214, 0.1);
+}
+
+tbody > tr:hover {
+	background-color: rgb(0, 114, 214, 0.8);
+	color: white;
+	cursor: pointer;
+}
+
+@media screen and (min-width: 720px) {
+
+}

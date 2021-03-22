@@ -1,0 +1,13 @@
+#introduction {
+	font-size: 15px;
+	margin: 20px 0 50px 0;
+}
+
+#email_alert {
+	background-color: #fff0f0;
+	color: #f44336;
+	font-size: 15px;
+	font-weight: bold;
+	padding: 20px;
+	border-radius: 5px;
+}

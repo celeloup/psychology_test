@@ -1,0 +1,103 @@
+.annexe .big_title {
+	margin-bottom: 30px;
+}
+
+.annexe .intro {
+	font-size: 16px;
+	
+	margin-bottom: 35px;
+}
+
+.annexe p {
+	font-size: 16px;
+}
+
+.annexe .form-group {
+	margin-bottom: 40px;
+}
+
+.question {
+	width: 100%;
+	margin: 10px 0px 15px 20px;
+	font-size: 18px;
+}
+
+.question span {
+	color: rgba(0, 114, 214, 0.8);
+	font-weight: bold;
+	margin-right: 5px;
+}
+
+.form-group select {
+	border: 1px solid rgba(0, 114, 214, 0.6);
+	height: 45px;
+	font-size: 20px;
+	color: rgba(0, 114, 214, 0.5);
+	-webkit-text-fill-color: rgba(0, 114, 214);
+	padding-right: 50px;
+}
+
+.empty-select
+{
+	-webkit-text-fill-color: rgba(0, 114, 214, 0.6) !important;
+}
+
+.form-group select option {
+	color: rgba(0, 114, 214);
+}
+
+.annexe .other-input{
+	margin: 15px 0 5px 0;
+}
+
+.scale_labels {
+	display: flex;
+	justify-content: space-between;
+	font-weight: bold;
+	color:rgba(0, 114, 214, 0.6);
+	padding: 2px 8px;
+	font-size: 14px;
+}
+
+.annexe .two_choice_input {
+	margin: auto;
+	margin-bottom: 40px;
+}
+
+#drag_question {
+	display: flex;
+	width: 100%;
+}
+
+.annexe .drag_box {
+	border: 1px solid black;
+	width: 50%;
+	height: 200px;
+	padding: 5px;
+}
+
+.drag_object {
+	width: 100%;
+	height: 40px;
+	padding: 8px;
+	margin-bottom: 5px;
+	background-color: rgba(0, 114, 214, 0.3);
+	font-size: 18px;
+	cursor: pointer;
+}
+
+@media screen and (max-width: 500px) {
+	.opinion_scale .btn {
+		font-size: 22px;
+		padding:0;
+	}
+
+	.annexe p {
+		font-size: 16px;
+		text-align: justify;
+	}
+
+	.question {
+		margin: 10px 0 15px 0;
+	}
+}

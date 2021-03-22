@@ -1,0 +1,207 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  max-width: 720px;
+  display: flex;
+  flex-flow: column;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  
+}
+
+.page_wrapper {
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+.unselectable {
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+button > * {
+  pointer-events: none;
+}
+
+/* Design formulaire */
+
+.blue {
+	color:rgb(0, 114, 214);
+	font-size: 30px;
+  }
+.partie {
+  margin-left: 20px;
+  margin-bottom: -15px;
+}
+
+.big_title {
+  font-size: 40px;
+}
+
+.questionnaire .form-group input, #login .form-group input {
+  display: block;
+  width: 100%;
+  color: #0072d6;
+  padding: 0px 0px 8px;
+  margin: 30px 0;
+  border: none;
+  outline: none;
+  border-radius: 0px;
+  font-size: 22px;
+  -webkit-text-fill-color: rgba(0, 114, 214);
+  animation: 1ms ease 0s 1 normal none running native-autofill-in;
+  transition: background-color 1e+08s ease 0s, box-shadow 0.1s ease-out 0s;
+  box-shadow: rgb(0 114 214 / 30%) 0px 1px;
+  background-color: transparent !important;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.form-group input[value=""] {
+  -webkit-text-fill-color: rgba(0, 114, 214, 0.6);
+}
+
+.form-control:focus {
+  box-shadow: rgb(0, 114, 214) 0px 2px;
+}
+
+/* .is-invalid {
+  position: relative;
+  width:10px;
+  height: 10px;
+  background-color: red;
+} */
+
+.is-invalid + .invalid-feedback {
+  display: block;
+  color: #cc2525;
+  margin-top: -25px;
+}
+
+.is-invalid > .invalid-feedback {
+  display: inline-block;
+  width: 100%;
+  color: #cc2525;
+}
+
+.invalid-feedback {
+  display: none;
+  margin-top: 5px;
+}
+
+.two_choice_input {
+  max-width: 400px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.two_choice_input .btn{
+  width: 150px;
+  color: rgba(0, 114, 214, 0.6);
+  font-size: 22px;
+  height: 50px;
+  border: 1px solid rgba(0, 114, 214, 0.6);
+  background-color: transparent;
+  margin: 5px;
+}
+
+.two_choice_input .btn:focus {
+  outline:none;
+  box-shadow: none;
+}
+
+.two_choice_input .btn:active {
+  color: rgba(0, 114, 214, 0.6);
+  border: 1px solid rgba(0, 114, 214, 0.6);
+}
+
+.two_choice_input .btn:hover{
+  background-color: rgb(0, 114, 214, 0.1);
+}
+
+.two_choice_input .btn[selected="true"]
+{
+  background-color: rgb(0, 114, 214, 0.3);
+  border: 2px solid rgba(0, 114, 214);
+  color: rgba(0, 114, 214);
+}
+
+/* INVALID FORM */
+
+
+.next_button {
+	display: block;
+  max-width: 300px;
+	margin: 50px auto 0 auto;
+	background-color: #0072d6;
+	color: white;
+	font-size: 25px;
+	font-weight: bolder;
+	border:none;
+	padding: 12px 24px;
+	border-radius: 5px;
+	transition:0.2s background-color ease;
+}
+
+.next_button:hover {
+	background-color: #1992fc;
+}
+
+.next_button:focus{
+  outline:none;
+  box-shadow: none;
+  background-color: #1992fc;
+}
+
+.next_button:active {
+  border:none;
+  outline:none;
+  box-shadow: none;
+}
+
+Button i {
+	margin-left:10px;
+	vertical-align: middle;
+}
+
+/* Tablette */
+
+/* Mobile */
+
+@media screen and (max-width: 500px) {
+	body {
+    display: inline-block;
+  }
+
+  .partie {
+    font-size: 20px;
+  }
+  .blue {
+    font-size: 24px;
+  }
+  .big_title {
+    font-size: 34px;
+  }
+  .form-group input {
+    font-size: 22px;
+  }
+  .two_choice_input .btn {
+    font-size: 22px;
+  }
+}
+
+@media screen and (max-height: 500px) {
+	body {
+    height: auto;
+  }
+}

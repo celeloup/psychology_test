@@ -1,0 +1,117 @@
+#home {
+	padding: 20px 10px 0px 10px;
+}
+
+#home_title {
+	max-width: 450px;
+	font-size: 46px;
+	margin: 0 0 40px 0;
+}
+  
+#presentation_text {
+	font-size: 16px;
+	text-align: justify;
+	margin-bottom: 20px;
+}
+
+#time {
+	text-align: center;
+	margin-bottom: 50px;
+}
+
+#start_button {
+	display: block;
+	margin: 10px auto;
+	background-color: #0072d6;
+	color: white;
+	font-size: 25px;
+	font-weight: bolder;
+	border:none;
+	padding: 12px 24px;
+	border-radius: 5px;
+	transition:0.2s background-color ease;
+}
+
+#start_button:hover {
+	background-color: #1992fc;
+}
+
+#start_button i {
+	margin-left:10px;
+	vertical-align: middle;
+}
+
+#login_button {
+	display: block;
+	margin:auto;
+	background: none;
+	color: gray;
+	border: none;
+	font-size: 18px;
+	transition:0.4s color ease;
+	-webkit-backface-visibility:hidden;
+			backface-visibility:hidden;
+	  position:relative;
+}
+
+#login_button:hover {
+	color: #0072d6;
+}
+
+#login_button:after {
+	content: "";
+	transition:0.5s all ease;
+	-webkit-backface-visibility:hidden;
+			backface-visibility:hidden;
+	position:absolute;
+	bottom:-0.25em;
+	height:5px;
+	height:0.35rem;
+	width:0;
+	background:#0072d6;
+	left:0;
+}
+
+#login_button:hover:after {
+	width: 100%;
+}
+
+#login_button:focus {
+	outline:0;
+}
+#login_button:active {
+	-webkit-box-shadow: none;
+	-moz-box-shadow:    none;
+	box-shadow:         none;
+}
+
+@media screen and (max-width: 500px) {
+	#home {
+		padding-bottom: 30px;
+	}
+	
+	#home_title {
+		font-size: 34px;
+	}
+
+	#button_wrapper {
+		position: fixed;
+		display: block;
+		height: 105px;
+		width: 100%;
+		bottom: 0;
+		left: 0;
+		background-color: #f2f2f2;
+		box-shadow: rgb(0 0 0 / 10%) 0px -1px;
+		padding: 15px 0;
+	}
+
+	#start_button {
+		margin: auto;
+		font-size: 18px;
+	}
+
+	#login_button {
+		font-size:16px;
+	}
+}
