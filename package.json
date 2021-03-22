@@ -15,5 +15,8 @@
 		"password-hash": "^1.2.2",
 		"react-tiger-transition": "^4.1.2",
 		"xlsx": "^0.16.9"
-	}
+	},
+	"engines": {
+        "node": "10.16.0"
+    }
 }

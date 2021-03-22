@@ -1,7 +1,7 @@
 //Définition des modules
 const express = require("express"); 
 const mongoose = require("mongoose"); 
-const bodyParser = require('body-parser');
+// const bodyParser = require('body-parser');
 
 mongoose
   .connect("mongodb+srv://dbAdminUser:bWIf5jbVhdsJM5ww@clustersherlock.trfr9.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true } )
@@ -17,11 +17,15 @@ mongoose
 const app = express();
 
 //Body Parser
-const urlencodedParser = bodyParser.urlencoded({
-    extended: true
-});
-app.use(urlencodedParser);
-app.use(bodyParser.json());
+// const urlencodedParser = bodyParser.urlencoded({
+//     extended: true
+// });
+// app.use(urlencodedParser);
+// app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+app.use(express.static('client/build'));
 
 //Définition des CORS
 app.use(function (req, res, next) {
@@ -33,12 +37,13 @@ app.use(function (req, res, next) {
 });
 
 //Définition du routeur
-let apiRoutes = require("./api-routes");
-app.use('/api', apiRoutes);
+let routes = require("./api-routes");
+app.use(routes);
+
 
 //Définition et mise en place du port d'écoute
-const port = 8800;
-app.listen(port, () => console.log(`Listening on port ${port}`));
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
 
 // dbAdminUser
 // bWIf5jbVhdsJM5ww

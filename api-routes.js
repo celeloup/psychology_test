@@ -1,30 +1,26 @@
 let router = require('express').Router();
-
-router.get('/test', function (req, res) {
-    res.json({
-        status: 'API Its Working',
-        message: 'Welcome to RESTHub crafted with love!'
-    });
-});
-
-
 var userController = require('./controllers/userController.js');
-// User routes
-router.route('/users')
+const path = require('path');
+
+router.route('/api/users')
     .get(userController.index)
     .post(userController.new);
 
-router.route('/user/:email')
+router.route('/api/user/:email')
     .get(userController.getUser),
 
-router.route('/user/dilemme')
+router.route('/api/user/dilemme')
     .put(userController.update_dilemme);
 
-router.route('/user/annexe')
+router.route('/api/user/annexe')
     .put(userController.update_annexe);
 
-router.route('/user/mbti')
+router.route('/api/user/mbti')
     .put(userController.update_mbti);
+
+router.use(function(req, res) {
+    res.sendFile(path.join(__dirname, '/client/build/index.html'));
+});
 
 // Export API routes
 module.exports = router;

@@ -19,17 +19,17 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-content">
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/admin" component={Admin} />
-            <Route exact path="/questions" component={ QuestionsPerso } />
-            <Route exact path="/dilemme" component={ Dilemme } />
-            <Route exact path="/annexe" component={ Annexe } />
-            <Route exact path="/mbti" component={ MBTI } />
-            <Route exact path="/resultats" component={ Results } />
-            <PrivateRoute path="/dashboard" component={Dashboard} />
-            {/* <Route exact path="/login" component={ Login } /> */}
-          </Switch>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/admin" component={Admin} />
+              <Route exact path="/questions" component={ QuestionsPerso } />
+              <Route exact path="/dilemme" component={ Dilemme } />
+              <Route exact path="/annexe" component={ Annexe } />
+              <Route exact path="/mbti" component={ MBTI } />
+              <Route exact path="/resultats" component={ Results } />
+              <PrivateRoute path="/dashboard" component={Dashboard} />
+              {/* <Route exact path="/login" component={ Login } /> */}
+            </Switch>
         </div>
       </div>
     );

@@ -3,7 +3,7 @@ import axios from "axios";
 const headers = {
   "Content-Type": "application/json"
 };
-const burl = "http://localhost:8800";
+// const burl = "http://localhost:5000";
 
 const API = {
   login_admin(user, password) {
@@ -19,11 +19,11 @@ const API = {
     localStorage.clear();
   },
   get_users: function() {
-    return axios.get(`${burl}/api/users`, {}, { headers: headers })
+    return axios.get(`/api/users`, {}, { headers: headers })
   },
   create_new_user: function(email, sexe, age, etude, pro, langue, langue_sec) {
     return axios.post(
-      `${burl}/api/users`,
+      `/api/users`,
       {
         email,
         sexe,
@@ -40,7 +40,7 @@ const API = {
   },
   update_dilemme: function(email, emotion_prog_a, emotion_prog_b, programme) {
     return axios.put(
-      `${burl}/api/user/dilemme`,
+      `/api/user/dilemme`,
       {
         email,
         emotion_prog_a,
@@ -55,7 +55,7 @@ const API = {
   update_annexe: function(email, connais_dilemme, preoccupation_epidemie,
     frequence_infos, frequence_science, exactitude_connaissance, respect_directives_sanitaires, raisons_respect) {
     return axios.put(
-      `${burl}/api/user/annexe`,
+      `/api/user/annexe`,
       {
         email,
         connais_dilemme,
@@ -73,7 +73,7 @@ const API = {
   },
   update_mbti: function (email, reponses, i, e, n, s, t, f, j, p, type) {
     return axios.put(
-      `${burl}/api/user/mbti`,
+      `/api/user/mbti`,
       {
         email, reponses, i, e, n, s, t, f, j, p, type
       },
@@ -82,7 +82,7 @@ const API = {
   },
   login: function(email_user) {
     return axios.get(
-      `${burl}/api/user/${email_user}`, {
+      `/api/user/${email_user}`, {
         params: {
           email: email_user
         }

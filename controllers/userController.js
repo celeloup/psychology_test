@@ -1,12 +1,4 @@
-// const account = require('./account/lib.js');
-
 const { find } = require("../model/userModel");
-
-// module.exports = function (app) {
-//     app.post('/login',account.login);
-//     app.post('/signup',account.signup);
-//     app.get('/get_users', account.get_users);
-// }
 
 User = require("../model/userModel");
 
