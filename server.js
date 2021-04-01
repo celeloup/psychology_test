@@ -1,8 +1,9 @@
-//Définition des modules
+require("dotenv").config();
 const express = require("express"); 
-const mongoose = require("mongoose"); 
-// const bodyParser = require('body-parser');
+const mongoose = require("mongoose");
+const path = require("path");
 
+// mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true });
 mongoose
   .connect("mongodb+srv://dbAdminUser:bWIf5jbVhdsJM5ww@clustersherlock.trfr9.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true } )
   .then(() => {
@@ -13,19 +14,12 @@ mongoose
     console.log(e);
   });
 
-//On définit notre objet express nommé app
 const app = express();
 
-//Body Parser
-// const urlencodedParser = bodyParser.urlencoded({
-//     extended: true
-// });
-// app.use(urlencodedParser);
-// app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use(express.static('client/build'));
+app.use(express.static(path.join(__dirname, "client", "build")));
 
 //Définition des CORS
 app.use(function (req, res, next) {
@@ -37,9 +31,12 @@ app.use(function (req, res, next) {
 });
 
 //Définition du routeur
-let routes = require("./api-routes");
+let routes = require("./routes");
 app.use(routes);
 
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
 
 //Définition et mise en place du port d'écoute
 const PORT = process.env.PORT || 5000;

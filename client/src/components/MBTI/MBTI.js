@@ -5,13 +5,16 @@ import "./MBTI.css";
 import { QuestionMBTI } from "./QuestionMBTI.js";
 import { questions } from "./DataMBTI.js";
 import Login from "../Login/Login.js";
+import Error401 from "../Errors/Error401";
+import Error500 from "../Errors/Error500";
 
 export class MBTI extends React.Component {
 	state = {
 		email: sessionStorage.getItem("email"),
 		reponses: Array.apply(null, Array(questions.length)).map(function () {return null}),
 		currentPage: 1,
-		questionsPerPage: 10
+		questionsPerPage: 10,
+		errorPage: ""
 	};
 	getMBTIResults = () => {
 		var [i, e, n, s, t, f, j, p] = [0, 0, 0, 0, 0, 0, 0, 0];
@@ -127,6 +130,18 @@ export class MBTI extends React.Component {
 			//localStorage.setItem("email", data.email);
 			window.location = "/resultats";
 		} catch (error) {
+			if (error.response.status === 401)
+			{
+				this.setState({
+					errorPage: "401"
+				})
+			}
+			if (error.response.status === 500)
+			{
+				this.setState({
+					errorPage: "500"
+				})
+			}
 			console.error(error);
 		}
 	};
@@ -181,6 +196,10 @@ export class MBTI extends React.Component {
 		setTimeout(function(){ button[0].parentElement.style.display = "none"; }, 600);
 	}
 	render() {
+		if (this.state.errorPage === "401")
+			return (<Error401></Error401>)
+		if (this.state.errorPage === "500")
+			return (<Error500></Error500>)
 		if (!this.state.email)
 			return (<Login onClose={null} show={true} closable={false}></Login>);
 		const { currentPage, questionsPerPage } = this.state;

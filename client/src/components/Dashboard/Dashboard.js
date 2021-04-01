@@ -3,6 +3,8 @@ import { Button, Spinner } from "react-bootstrap";
 import "./Dashboard.css";
 import API from "../../utils/API";
 import {ExportCSV} from "./ExportCSV.js";
+import Error401 from "../Errors/Error401";
+import Error500 from "../Errors/Error500";
 
 //const users = API.getUsers();
 
@@ -10,7 +12,8 @@ export class Dashboard extends React.Component {
   state = {
     data: [],
     users: [],
-    isLoading: true
+    isLoading: true,
+		errorPage: ""
   }
   componentDidMount() {
       API.get_users().then (response => {
@@ -22,6 +25,18 @@ export class Dashboard extends React.Component {
         // console.log("data retrieved !", this.state.data)
       })
       .catch(error => {
+        if (error.response.status === 401)
+				{
+					this.setState({
+						errorPage: "401"
+					})
+				}
+				if (error.response.status === 500)
+				{
+					this.setState({
+						errorPage: "500"
+					})
+				}
         console.log(error);
       });
   };
@@ -31,6 +46,10 @@ export class Dashboard extends React.Component {
   };
 
   render() {
+    if (this.state.errorPage === "401")
+			return (<Error401></Error401>)
+		if (this.state.errorPage === "500")
+			return (<Error500></Error500>)
     var users = this.state.users.map(function(user) {
       return (
         <tr key={ user.email }>

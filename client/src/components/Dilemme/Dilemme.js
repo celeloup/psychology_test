@@ -3,6 +3,8 @@ import { Button, FormGroup, FormLabel, Form } from "react-bootstrap";
 import API from "../../utils/API";
 import "./Dilemme.css";
 import Login from "../Login/Login.js";
+import Error401 from "../Errors/Error401";
+import Error500 from "../Errors/Error500";
 
 const dilemmes = [
 	{
@@ -65,7 +67,8 @@ export class Dilemme extends React.Component {
 		emotion_prog_b: "",
 		programme: "",
 		isLoading: true,
-		errors:[]
+		errors:[],
+		errorPage: ""
 	};
 	// componentDidMount() {
 	// 	API.get_users().then (response => {
@@ -210,7 +213,7 @@ export class Dilemme extends React.Component {
 	};
 	handleSubmit = async(event) => {
 		event.preventDefault();
-		console.log(this.state);
+		// console.log(this.state);
 		var errors = [];
 		if (this.state.emotion_prog_a === "")
 			errors.push("emotion_prog_a");
@@ -230,11 +233,27 @@ export class Dilemme extends React.Component {
 				//localStorage.setItem("email", data.email);
 				window.location = "/annexe";
 			} catch (error) {
+				if (error.response.status === 401)
+				{
+					this.setState({
+						errorPage: "401"
+					})
+				}
+				if (error.response.status === 500)
+				{
+					this.setState({
+						errorPage: "500"
+					})
+				}
 				console.error(error);
 			}
 		}
 	};
 	render() {
+		if (this.state.errorPage === "401")
+			return (<Error401></Error401>)
+		if (this.state.errorPage === "500")
+			return (<Error500></Error500>)
 		const { dilemme } = this.state;
 		if (!this.state.email)
 			return (<Login onClose={null} show={true} closable={false}></Login>);

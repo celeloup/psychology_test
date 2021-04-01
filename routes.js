@@ -1,5 +1,5 @@
 let router = require('express').Router();
-var userController = require('./controllers/userController.js');
+var userController = require('./controller/userController.js');
 const path = require('path');
 
 router.route('/api/users')

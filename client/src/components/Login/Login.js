@@ -3,29 +3,31 @@ import "./Login.css";
 import PropTypes from "prop-types";
 import { Form, Button, FormGroup, FormControl } from "react-bootstrap";
 import API from "../../utils/API";
+import Error500 from "../Errors/Error500";
 
 export default class Login extends React.Component {
 	state = {
 		email: "",
 		errors: [],
-		alert: false
+		alert: false,
+		errorPage: ""
 	};
 	componentDidMount() {
 		window.scrollTo(0, 0);
 	};
-	send = async () => {
-		const { email } = this.state;
-		if (!email || email.length === 0) {
-		return;
-		}
-		try {
-			const { data } = await API.login(email);
-			sessionStorage.setItem("email", data.data.email);
-			window.location = "/results";
-		} catch (error) {
-			console.error(error);
-		}
-	};
+	// send = async () => {
+	// 	const { email } = this.state;
+	// 	if (!email || email.length === 0) {
+	// 	return;
+	// 	}
+	// 	try {
+	// 		const { data } = await API.login(email);
+	// 		sessionStorage.setItem("email", data.data.email);
+	// 		window.location = "/results";
+	// 	} catch (error) {
+	// 		console.error(error);
+	// 	}
+	// };
 	onClose = e => {
 		e.stopPropagation();
 		var scroll = document.getElementsByClassName("page_wrapper")[0].style.top;
@@ -71,69 +73,75 @@ export default class Login extends React.Component {
 					window.location = "/mbti";
 				else
 					window.location = "/resultats";
-				console.log(data.data);
+				// console.log(data.data);
 			} catch (error) {
-				if (error.message === "Request failed with status code 401")
+				if (error.response.status === 401)
 				{
 					this.setState({
 						alert: true
 					});
 				}
+				if (error.response.status === 500)
+				{
+					this.setState({
+						errorPage: "500"
+					})
+				}
 			}
 		}
 	};
   	render() {
-	const { email } = this.state;
-    if (!this.props.show) {
-      return null;
-    }
-	if (window.innerWidth < 560)
-	{
-		var scroll = window.scrollY;
-		document.getElementsByClassName("page_wrapper")[0].style.position = "fixed";
-		document.getElementsByClassName("page_wrapper")[0].style.top = -scroll + "px";
-	}
-	
-    return (
-		<div id="login_wrapper">
-			<div id="login">
-				{ this.props.closable && <span className="closebtn" onClick={this.onClose}>&times;</span> }
-				<h2 className="login_title">Se connecter</h2>
-				<div className="content">
-					{ this.props.children }
-					<div id="login_prez">Vous avez <b>déjà répondu</b> et souhaitez retrouver le résultat de votre test de personnalité ?<br/>Vous avez commencé à répondre mais n'avez <b>pas fini</b> ?<br/>Connectez-vous ci-dessous pour accéder <b>aux résultats</b> où à vos <b>questions incomplètes</b>.</div>
-					<Form onSubmit={this.handleSubmit}>
-						<FormGroup controlId="email">
-						<FormControl
-							autoFocus
-							placeholder="Email"
-							value={email}
-							onChange={this.handleChange}
-							className={
-								this.hasError("email")
-								  ? "form-control is-invalid"
-								  : "form-control"
-							  }
-						/>
-						<Form.Control.Feedback type="invalid" >
-							<i className="fas fa-exclamation-circle"></i> Email invalide.
-            			</Form.Control.Feedback>
-						{this.state.alert && 
-						<div id="user_not_exist">
-							Cette adresse mail ne correspond à aucune entrée. <a href="/questions">Commencer le questionnaire</a> ?
-						</div> }
-						</FormGroup>
-						<Button className="next_button" block type="submit">
-						Connexion
-						</Button>
-					</Form>
-					{ this.props.closable && <Button id="back_button" onClick={this.onClose}>Retour</Button>}
-					{ !this.props.closable && <Button id="back_button" onClick={() => window.location = "/questions"}>Retour au début</Button>}
+		if (this.state.errorPage === "500")
+			return (<Error500></Error500>)
+		const { email } = this.state;
+		if (!this.props.show) {
+			return null;
+		}
+		if (window.innerWidth < 560)
+		{
+			var scroll = window.scrollY;
+			document.getElementsByClassName("page_wrapper")[0].style.position = "fixed";
+			document.getElementsByClassName("page_wrapper")[0].style.top = -scroll + "px";
+		}
+		return (
+			<div id="login_wrapper">
+				<div id="login">
+					{ this.props.closable && <span className="closebtn" onClick={this.onClose}>&times;</span> }
+					<h2 className="login_title">Se connecter</h2>
+					<div className="content">
+						{ this.props.children }
+						<div id="login_prez">Vous avez <b>déjà répondu</b> et souhaitez retrouver le résultat de votre test de personnalité ?<br/>Vous avez commencé à répondre mais n'avez <b>pas fini</b> ?<br/>Connectez-vous ci-dessous pour accéder <b>aux résultats</b> où à vos <b>questions incomplètes</b>.</div>
+						<Form onSubmit={this.handleSubmit}>
+							<FormGroup controlId="email">
+							<FormControl
+								placeholder="Email"
+								value={email}
+								onChange={this.handleChange}
+								className={
+									this.hasError("email")
+									? "form-control is-invalid"
+									: "form-control"
+								}
+							/>
+							<Form.Control.Feedback type="invalid" >
+								<i className="fas fa-exclamation-circle"></i> Email invalide.
+							</Form.Control.Feedback>
+							{this.state.alert && 
+							<div id="user_not_exist">
+								Cette adresse mail ne correspond à aucune entrée. <a href="/questions">Commencer le questionnaire</a> ?
+							</div> }
+							</FormGroup>
+							<Button className="next_button" block type="submit">
+							Connexion
+							</Button>
+						</Form>
+						{ this.props.closable && <Button id="back_button" onClick={this.onClose}>Retour</Button>}
+						{ !this.props.closable && <Button id="back_button" onClick={() => window.location = "/questions"}>Retour au début</Button>}
+					</div>
 				</div>
 			</div>
-	  	</div>
-    );
-  }
+		);
+	}
 }
 Login.propTypes = {
   show: PropTypes.bool.isRequired,

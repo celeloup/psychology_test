@@ -1,4 +1,3 @@
-//import Header from '../components/Header.js'
 import React from "react";
 import { Button } from "react-bootstrap";
 import "./Home.css";

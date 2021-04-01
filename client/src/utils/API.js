@@ -9,11 +9,12 @@ const API = {
   login_admin(user, password) {
     if (user === "admin" && password === "sherlocked") {
       console.log("admin logged");
+      sessionStorage.setItem("token", "admin_token");
       return ("test");
     }
   },
   isAuth: function() {
-    return localStorage.getItem("token") === "admin_token";
+    return sessionStorage.getItem("token") === "admin_token";
   },
   logout: function() {
     localStorage.clear();

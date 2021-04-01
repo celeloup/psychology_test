@@ -1,0 +1,134 @@
+
+#pourcentages_mbti {
+	margin-bottom: 50px;
+}
+
+#pourcent_intro {
+	text-align: center;
+	color: rgb(110,110,110);
+	margin-bottom: 5px;
+	font-size: 18px;
+	font-style: italic;
+}
+
+#pourcent_intro > a > i {
+	margin-left: 3px;
+	vertical-align: baseline;
+	color:rgb(110,110,110) !important;
+	transition: color .3s ease;
+}
+
+#pourcent_intro > a:hover > i {
+	color: rgb(0, 114, 214, 0.8) !important;
+}
+
+.pourcent_wrapper {
+	display: flex;
+	align-content: space-between;
+	align-items: center;
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+.pourcent_wrapper div:first-child {
+	text-align: right;
+}
+
+.pourcent_wrapper div:first-child, .pourcent_wrapper div:last-child {
+	width: 100px;
+}
+
+.pourcent_bar {
+	height: 15px;
+	width: 100%;
+	position: relative;
+	background: rgb(200, 200, 200, 0.4);
+	border-radius: 20px;
+	margin: 0 10px;
+}
+
+.pourcent_bar > span {
+	display: block;
+	height: 15px;
+	border-top-right-radius: 20px;
+	border-bottom-right-radius: 20px;
+	border-top-left-radius: 20px;
+	border-bottom-left-radius: 20px;
+	background-color: rgb(0, 114, 214, 0.5);
+	position: relative;
+
+}
+
+.big_pourcent {
+	font-size: 26px;
+}
+
+.results p{
+	font-size: 15px;
+	margin-bottom: 20px;
+}
+
+.results > p::first-letter {
+	font-size: 18px;
+	font-weight: 500;
+	color: rgb(0, 114, 214, 0.8);
+}
+
+#fiche_presentation {
+	font-size: 16px;
+	font-weight: 600;
+	padding: 20px;
+	padding-top: 14px;
+	border: 3px solid rgb(0, 114, 214, 0.8);
+	border-radius: 10px;
+	margin: 30px;
+}
+
+#fiche_presentation::first-letter {
+	color: #333;
+	font-size: 20px;
+}
+
+.quote_result {
+	font-size: 20px !important;
+	background-color: rgb(0, 114, 214, 0.8);
+	padding: 20px 30px 40px 30px;
+	color: white;
+	font-weight: 600;
+	border-radius: 20px;
+	margin: 30px;
+	float:none;
+}
+
+.quote_result > span {
+	float: right;
+	padding: 20px;
+	font-size: 18px;
+}
+
+.result_subtitle {
+	padding: 20px;
+	color: rgb(0, 114, 214, 0.8);
+}
+
+.results ul {
+	list-style: none;
+	margin-bottom: 50px;
+}
+
+.results li {
+	font-size: 16px;
+	margin-bottom: 10px;
+}
+
+.results li::before {
+	content: "";
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background-color: rgb(0, 114, 214, 0.8);
+	display: inline-block;
+  	/* margin-left: -1em */
+	margin-right: 8px;
+	margin-bottom: 2px;
+}

@@ -1,7 +1,5 @@
 import React from "react";
 import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
-//import API from "../utils/API";
-
 
 export class Admin extends React.Component {
 	state = {
@@ -16,7 +14,7 @@ export class Admin extends React.Component {
 			return;
 		if (user === "admin" && password === "sherlocked")
 		{
-			localStorage.setItem("token", "admin_token");
+			sessionStorage.setItem("token", "admin_token");
 			window.location = "/dashboard";
 		}
 		else
@@ -37,7 +35,6 @@ export class Admin extends React.Component {
 				<FormGroup controlId="user">
 					<FormLabel>user</FormLabel>
 					<FormControl
-						autoFocus
 						type="user"
 						value={user}
 						onChange={this.handleChange}

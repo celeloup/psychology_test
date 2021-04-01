@@ -3,6 +3,8 @@ import { Form, Button, FormGroup, FormControl } from "react-bootstrap";
 import API from "../../utils/API";
 import "./QuestionsPerso.css";
 import Login from "../Login/Login.js";
+import Error401 from "../Errors/Error401";
+import Error500 from "../Errors/Error500";
 
 export class QuestionsPerso extends React.Component {
 	constructor(props) {
@@ -17,7 +19,8 @@ export class QuestionsPerso extends React.Component {
 			langue: "",
 			langue_sec: "",
 			errors: [],
-			show: false
+			show: false,
+			errorPage: ""
 		};
 	}
 	componentDidMount() {
@@ -97,6 +100,12 @@ export class QuestionsPerso extends React.Component {
 			} catch (error) {
 				if (error.response.status === 401)
 					this.showLogin();
+				if (error.response.status === 500)
+				{
+					this.setState({
+						errorPage: "500"
+					})
+				}
 			}
 		}
 	};
@@ -106,6 +115,10 @@ export class QuestionsPerso extends React.Component {
 		});
 	  };
 	render() {
+		if (this.state.errorPage === "401")
+			return (<Error401></Error401>)
+		if (this.state.errorPage === "500")
+			return (<Error500></Error500>)
 		const { email, age, etude, pro, langue, langue_sec } = this.state;
 		return (
 			<div className="page_wrapper questionnaire">
@@ -122,7 +135,6 @@ export class QuestionsPerso extends React.Component {
 				<Form onSubmit={this.handleSubmit}>
 					<FormGroup controlId="email">
 						<FormControl
-							autoFocus
 							placeholder="Email"
 							value={email}
 							onChange={this.handleChange}

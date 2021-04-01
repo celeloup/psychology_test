@@ -4,6 +4,8 @@ import API from "../../utils/API";
 import "./Annexe.css";
 // import { DragAndDrop } from "./DragAndDrop/DragAndDrop.js";
 import Login from "../Login/Login.js";
+import Error401 from "../Errors/Error401";
+import Error500 from "../Errors/Error500";
 
 export class Annexe extends React.Component {
 	state = {
@@ -17,22 +19,23 @@ export class Annexe extends React.Component {
 		raisons_respect: "",
 		isLoading: true,
 		showOther: false,
-		errors: []
+		errors: [],
+		errorPage: ""
 	};
-	send = async () => {
-		const { email, connais_dilemme, preoccupation_epidemie, frequence_infos, frequence_science, exactitude_connaissance, respect_directives_sanitaires, raisons_respect } = this.state;
-		if (!connais_dilemme || connais_dilemme.length === 0) {
-			console.log("invalid form");
-			return;
-		}
-		try {
-			await API.update_annexe(email, connais_dilemme, preoccupation_epidemie,
-				frequence_infos, frequence_science, exactitude_connaissance, respect_directives_sanitaires, raisons_respect);
-			window.location = "/mbti";
-		} catch (error) {
-			console.error(error);
-		}
-	};
+	// send = async () => {
+	// 	const { email, connais_dilemme, preoccupation_epidemie, frequence_infos, frequence_science, exactitude_connaissance, respect_directives_sanitaires, raisons_respect } = this.state;
+	// 	if (!connais_dilemme || connais_dilemme.length === 0) {
+	// 		console.log("invalid form");
+	// 		return;
+	// 	}
+	// 	try {
+	// 		await API.update_annexe(email, connais_dilemme, preoccupation_epidemie,
+	// 			frequence_infos, frequence_science, exactitude_connaissance, respect_directives_sanitaires, raisons_respect);
+	// 		window.location = "/mbti";
+	// 	} catch (error) {
+	// 		console.error(error);
+	// 	}
+	// };
 	handleChange = (event) => {
 		this.setState({
 			[event.target.id]: event.target.value	
@@ -120,7 +123,7 @@ export class Annexe extends React.Component {
 	}
 	handleSubmit = async(event) => {
 		event.preventDefault();
-		console.log(this.state);
+		// console.log(this.state);
 		var errors = [];
 		if (this.state.connais_dilemme === "")
 			errors.push("connais_dilemme");
@@ -149,6 +152,18 @@ export class Annexe extends React.Component {
 				frequence_infos, frequence_science, exactitude_connaissance, respect_directives_sanitaires, raisons_respect);
 				window.location = "/mbti";
 			} catch (error) {
+				if (error.response.status === 401)
+				{
+					this.setState({
+						errorPage: "401"
+					})
+				}
+				if (error.response.status === 500)
+				{
+					this.setState({
+						errorPage: "500"
+					})
+				}
 				console.error(error);
 			}
 		}
@@ -171,6 +186,10 @@ export class Annexe extends React.Component {
 
 
 	render () {
+		if (this.state.errorPage === "401")
+			return (<Error401></Error401>)
+		if (this.state.errorPage === "500")
+			return (<Error500></Error500>)
 		if (!this.state.email)
 			return (<Login onClose={null} show={true} closable={false}></Login>);
 		return (

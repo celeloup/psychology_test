@@ -3,20 +3,23 @@
 	"version": "1.0.0",
 	"main": "server.js",
 	"scripts": {
-		"start": "node server.js"
+		"start": "node server.js",
+		"heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
 	},
 	"dependencies": {
 		"body-parser": "^1.18.2",
 		"create-react-app": "^1.5.2",
+		"dotenv": "^8.2.0",
 		"express": "^4.16.2",
 		"file-saver": "^2.0.5",
 		"jwt-simple": "^0.5.1",
 		"mongoose": "^5.0.7",
 		"password-hash": "^1.2.2",
+		"react-router-hash-link": "^2.4.0",
 		"react-tiger-transition": "^4.1.2",
 		"xlsx": "^0.16.9"
 	},
 	"engines": {
-        "node": "10.16.0"
-    }
+		"node": "14.15.3"
+	}
 }

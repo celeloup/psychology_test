@@ -86,7 +86,7 @@ exports.new = async function (req, res) {
         return res.status(200).json({
             message: "New user created!",
             data: userObject,
-            token: userObject.getToken(),
+            // token: userObject.getToken(),
             email: user.email,
             dilemme: userObject.dilemme
         });
@@ -197,6 +197,3 @@ exports.update_mbti = async function (req, res) {
         });
     }
 };
-
-
-//LOGIN
