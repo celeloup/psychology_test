@@ -5,8 +5,7 @@ import API from "../../utils/API";
 import {ExportCSV} from "./ExportCSV.js";
 import Error401 from "../Errors/Error401";
 import Error500 from "../Errors/Error500";
-
-//const users = API.getUsers();
+import {PieChart} from "./PieChart.js";
 
 export class Dashboard extends React.Component {
   state = {
@@ -22,7 +21,6 @@ export class Dashboard extends React.Component {
           users: response.data.data,
           isLoading: false
         });
-        // console.log("data retrieved !", this.state.data)
       })
       .catch(error => {
         if (error.response.status === 401)
@@ -44,6 +42,32 @@ export class Dashboard extends React.Component {
     API.logout();
     window.location = "/";
   };
+  countSexe = () => {
+	var women = 0;
+	var men = 0;  
+	for (var i = 0; i < this.state.users.length; i++)
+	{
+		if(this.state.users[i].infos_perso.sexe === "Femme")
+			women++;
+		else if (this.state.users[i].infos_perso.sexe === "Homme")
+			men++;
+	}
+	return ([women, men]);
+  };
+//   countTypes = () => {
+// 	var infp = 0;
+// 	var esfp = 0;
+// 	var 
+// 	for (var i = 0; i < this.state.users.length; i++)
+// 	{
+// 		if(this.state.users[i].infos_perso.sexe === "Femme")
+// 			women++;
+// 		else if (this.state.users[i].infos_perso.sexe === "Homme")
+// 			men++;
+// 	}
+// 	return ([women, men]);
+//   }
+
 
   render() {
     if (this.state.errorPage === "401")
@@ -64,6 +88,41 @@ export class Dashboard extends React.Component {
         </tr>
       );
     });
+
+	// PIE CHART
+	const drawSexe = (ctx) => {
+		var lastend = 0;
+		var data = this.countSexe();
+		var myTotal = 0;
+		var myColor = ['#f0ad4e', '#0072d6'];
+		
+		for(var e = 0; e < data.length; e++)
+		{ myTotal += data[e]; }
+		var labels = [data[0]/myTotal * 100 + '%', data[1]/myTotal * 100 + '%'];
+		var off = 10
+		var w = (200 - off) / 2
+		var h = (200 - off) / 2
+		for (var i = 0; i < data.length; i++) {
+			ctx.fillStyle = myColor[i];
+			ctx.strokeStyle ='white';
+			ctx.lineWidth = 2;
+			ctx.beginPath();
+			ctx.moveTo(w,h);
+			var len =  (data[i]/myTotal) * 2 * Math.PI
+			var r = h - off / 2
+			ctx.arc(w , h, r, lastend,lastend + len,false);
+			ctx.lineTo(w,h);
+			ctx.fill();
+			ctx.stroke();
+			ctx.fillStyle ='white';
+			ctx.font = "20px Arial";
+			ctx.textAlign = "center";
+			ctx.textBaseline = "middle";
+			var mid = lastend + len / 2
+			ctx.fillText(labels[i],w + Math.cos(mid) * (r/2) , h + Math.sin(mid) * (r/2));
+			lastend += Math.PI*2*(data[i]/myTotal);
+		}
+	  }
     
     return (
       <div className="page_wrapper dashboard">
@@ -76,6 +135,10 @@ export class Dashboard extends React.Component {
           { !this.state.isLoading &&
           
             <div className="userList">
+				<div id="stats">
+					<div id="nb_reponse"><span>{this.state.users.length}</span> réponses</div>
+					<PieChart draw={drawSexe} labels={["Femme", "Homme"]} colors={['#f0ad4e', '#0072d6']}/>
+				</div>
               <ExportCSV csvData={this.state.users} fileName="sherlock" />
               <table>
                 <thead>
@@ -95,11 +158,10 @@ export class Dashboard extends React.Component {
                   { users }
                 </tbody>
               </table>
-                
-              
+
             </div>
           }
-        <Button onClick={this.disconnect} block type="submit">
+        <Button className="next_button" onClick={this.disconnect} block type="submit">
           Se déconnecter
         </Button>
       </div>

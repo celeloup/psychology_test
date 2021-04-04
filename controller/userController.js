@@ -86,7 +86,6 @@ exports.new = async function (req, res) {
         return res.status(200).json({
             message: "New user created!",
             data: userObject,
-            // token: userObject.getToken(),
             email: user.email,
             dilemme: userObject.dilemme
         });
@@ -118,7 +117,6 @@ exports.update_dilemme = async function (req, res) {
             message: "Dilemme updated !",
             data: updatedUser,
             email: findUser.email
-            //token: findUser.getToken()
         });
     } catch (error) {
         return res.status(500).json({
@@ -152,7 +150,6 @@ exports.update_annexe = async function (req, res) {
         return res.status(200).json({
             message: "Annexe updated !",
             data: updatedUser
-            //token: findUser.getToken()
         });
     } catch (error) {
         return res.status(500).json({
@@ -189,7 +186,6 @@ exports.update_mbti = async function (req, res) {
         return res.status(200).json({
             message: "MBTI updated !",
             data: updatedUser
-            //token: findUser.getToken()
         });
     } catch (error) {
         return res.status(500).json({

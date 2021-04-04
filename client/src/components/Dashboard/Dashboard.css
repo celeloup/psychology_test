@@ -36,6 +36,54 @@ tbody > tr:hover {
 	cursor: pointer;
 }
 
+#stats {
+	display: flex;
+	justify-content:space-evenly;
+	align-items: center;
+}
+
+.piechart {
+	display: flex;
+	align-items: center;
+}
+
+[colordata="#f0ad4e"]::before {background-color:#f0ad4e !important}
+[colordata="#0072d6"]::before {background-color:#0072d6 !important}
+
+.piechart_label {
+	font-size: 20px;
+	padding: 3px;
+}
+
+.piechart_label::before {
+	content: "";
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	margin-right: 10px;
+	border-radius: 50%;
+	background-color: red;
+}
+
+#nb_reponse {
+	font-size: 20px;
+	margin-bottom: 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	max-width: 200px;
+}
+
+#nb_reponse span {
+	font-size: 50px;
+}
+
+.userList button {
+	float: right;
+	margin-bottom: 20px;
+	font-size: 20px;
+}
+
 @media screen and (min-width: 720px) {
 
 }

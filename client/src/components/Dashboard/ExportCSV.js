@@ -38,7 +38,7 @@ const parseData = (data_to_parse) => {
 			newData[i].frequence_science = data_to_parse[i].annexes.frequence_science;
 			newData[i].exactitude_connaissance = data_to_parse[i].annexes.exactitude_connaissance;
 			newData[i].respect_directives_sanitaires = data_to_parse[i].annexes.respect_directives_sanitaires;
-			newData[i].raisons_respect = data_to_parse[i].annexes.raisons_respect;
+			newData[i].raisons_respect = data_to_parse[i].annexes.raisons_respect.join(", ");
 		}
 		else {
 			newData[i].connais_dilemme = "";
@@ -50,26 +50,22 @@ const parseData = (data_to_parse) => {
 			newData[i].raisons_respect = "";
 		}
 
-		if (data_to_parse[i].mbti) {
+		if (data_to_parse[i].mbti.reponses.length !== 0) {
 			newData[i].mbti = data_to_parse[i].mbti.type;
-			newData[i].mbti_t = data_to_parse[i].mbti.t;
-			newData[i].mbti_f = data_to_parse[i].mbti.f;
-			newData[i].mbti_reponses = data_to_parse[i].mbti.reponses;
+			var mbti_detail = "i: " + data_to_parse[i].mbti.i + ", e: " + data_to_parse[i].mbti.e + ", n: " + data_to_parse[i].mbti.n + ", s: " + data_to_parse[i].mbti.s + " t: " + data_to_parse[i].mbti.t + ", f: " + data_to_parse[i].mbti.f + ", j: " + data_to_parse[i].mbti.j + ", p: " + data_to_parse[i].mbti.p;
+			newData[i].mbti_detail = mbti_detail;
+			// newData[i].mbti_t = data_to_parse[i].mbti.t;
+			// newData[i].mbti_f = data_to_parse[i].mbti.f;
+			// newData[i].mbti_reponses = data_to_parse[i].mbti.reponses;
 		}
 		else {
 			newData[i].mbti = "";
-			newData[i].mbti_t = "";
-			newData[i].mbti_f = "";
-			newData[i].mbti_reponses = "";
+			newData[i].mbti_detail = "";
+			// newData[i].mbti_t = "";
+			// newData[i].mbti_f = "";
+			// newData[i].mbti_reponses = "";
 		}
 	}
-	// data_to_parse.forEach(entry => {
-	// 	newData.push({
-	// 		email: entry.email, 
-	// 		dilemme: entry.dilemme, 
-	// 		sexe: entry.infos_perso.sexe
-	// 	});
-	// });
 	return (newData);
 };
 
@@ -95,6 +91,6 @@ export const ExportCSV = ({csvData, fileName}) => {
     }
 
     return (
-        <Button variant="warning" onClick={(e) => exportToCSV(csvData,fileName)}>Export</Button>
+        <Button variant="warning" onClick={(e) => exportToCSV(csvData,fileName)}>Exporter</Button>
     )
 }

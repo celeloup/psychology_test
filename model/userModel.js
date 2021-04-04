@@ -1,6 +1,4 @@
 const mongoose = require("mongoose");
-// const jwt = require("jwt-simple");
-// const config = require("../config/config");
 
 const userSchema = mongoose.Schema(
   {
@@ -29,7 +27,7 @@ const userSchema = mongoose.Schema(
       frequence_science: { type: String },
       exactitude_connaissance: { type: Number },
       respect_directives_sanitaires: { type: Number },
-      raisons_respect: { type: String }
+      raisons_respect: { type: [String] }
     },
     mbti:
     {
@@ -58,7 +56,6 @@ userSchema.methods = {
 };
 
 module.exports = mongoose.model("User", userSchema);
-// module.exports = mongoose.model("User");
 
 module.exports.get = function (callback, limit) {
   User.find(callback).limit(limit);

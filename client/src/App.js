@@ -10,7 +10,9 @@ import { Results } from "./components/Results/Results.js";
 import { Annexe } from "./components/Annexe/Annexe.js";
 import { MBTI } from "./components/MBTI/MBTI.js";
 import "./App.css";
-import NotFound from "./components/Errors/NotFound.js"
+import NotFound from "./components/Errors/NotFound.js";
+
+require('dotenv').config({ path: '../.env' });
 
 class App extends Component {
   render() {

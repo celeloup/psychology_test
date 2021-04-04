@@ -1,6 +1,6 @@
 
 #pourcentages_mbti {
-	margin-bottom: 50px;
+	margin-bottom: 40px;
 }
 
 #pourcent_intro {
@@ -56,7 +56,6 @@
 	border-bottom-left-radius: 20px;
 	background-color: rgb(0, 114, 214, 0.5);
 	position: relative;
-
 }
 
 .big_pourcent {
@@ -90,19 +89,27 @@
 }
 
 .quote_result {
-	font-size: 20px !important;
 	background-color: rgb(0, 114, 214, 0.8);
-	padding: 20px 30px 40px 30px;
+	padding: 20px 30px 55px 30px;
 	color: white;
-	font-weight: 600;
 	border-radius: 20px;
 	margin: 30px;
 	float:none;
+	position: relative;
+}
+
+.quote_result > p {
+	font-size: 20px !important;
+	font-weight: 600;
+	margin-bottom: 0;
 }
 
 .quote_result > span {
-	float: right;
-	padding: 20px;
+	font-size: 18px !important;
+	font-weight: 600;
+	position: absolute;
+	right: 0;
+	margin: 10px 20px;
 	font-size: 18px;
 }
 
@@ -128,7 +135,225 @@
 	border-radius: 50%;
 	background-color: rgb(0, 114, 214, 0.8);
 	display: inline-block;
-  	/* margin-left: -1em */
 	margin-right: 8px;
 	margin-bottom: 2px;
+}
+
+#sharing_buttons {
+	display:flex;
+	align-items:center;
+	justify-content: center;
+}
+
+.IN-widget button {
+	width: 90px;
+	height: 28px !important;
+	margin: 10px;
+	padding: 4px 0 !important;
+	font-size: 14px !important;
+	border-radius: 4px !important;
+}
+
+.twitter-share-button {
+	margin: 10px;
+}
+
+.fb-share-button {
+	margin: 10px;
+}
+
+.thankyou {
+	color: rgb(0, 114, 214, 0.8);
+	text-align: center;
+	border: 2px solid rgb(0, 114, 214, 0.8);
+	padding: 10px;
+	border-radius: 5px;
+}
+
+h4 {
+	text-align: center;
+	padding-top: 30px;
+}
+
+.contact_email {
+	display: block;
+	margin: 0 auto;
+	margin-top: 15px;
+	max-width: 300px;
+	padding: 15px 20px;
+	border: 2px solid rgb(0, 114, 214, 0.8);
+	color: rgb(0, 114, 214, 0.8);
+	border-radius: 5px;
+	font-size: 18px;
+	font-weight: 500;
+	position: relative;
+}
+
+#email_to_copy {
+	border:none;
+	user-select: none;
+	width: 100%;
+}
+
+#email_to_copy:focus {
+	outline: none;
+}
+
+#copy_button {
+	position:absolute;
+	top: -10px;
+	right: -10px;
+	width: 35px;
+	height: 35px;
+	border-radius: 50%;
+	background-color: #328ede;
+	color: #fff;
+	text-align: center;
+	cursor: pointer;
+	font-size: 19px;
+	padding: 3px 0;
+	transition: background-color 0.2s;
+}
+
+#copy_button:hover {
+	background-color: rgb(0, 114, 214);
+}
+
+#copy_button:hover #copy_tooltip {
+	visibility: visible;
+	opacity: 1;
+}
+
+#copy_tooltip {
+	visibility: hidden;
+	opacity: 0;
+	cursor: initial;
+	display: inline-block;
+	background-color: #333;
+	position: absolute;
+	width: 80px;
+	font-size: 15px;
+	padding: 5px 15px;
+	border-radius: 5px;
+	top: -40px;
+	left: -24px;
+	transition: opacity 0.5s;
+}
+
+#copy_tooltip::after {
+	content: "";
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	margin-left: -4px;
+	border-width: 5px;
+	border-style: solid;
+	border-color: #333 transparent transparent transparent;
+}
+
+.dysco_div {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}
+
+.dysco_div img {
+	max-width: 200px;
+}
+
+.dysco_div p {
+	max-width: 430px;
+}
+
+.deconnection {
+	max-width: 300px;
+	margin-top: 25px !important;
+	margin-bottom: 60px !important;
+}
+
+.credit {
+	width: 100%;
+	text-align: center;
+	margin-bottom: -30px;
+}
+
+
+@media screen and (max-width: 720px) {
+
+	#fiche_presentation {
+		margin: 30px 0;
+	}
+
+	.quote_result {
+		margin: 30px 0;
+	}
+	.dysco_div {
+		margin-top: 15px;
+		align-items:flex-start;
+	}
+
+	.pourcent_wrapper {
+		margin-top: 20px;
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: space-evenly;
+	}
+
+	.pourcent_wrapper > * {
+		flex: 1 100%;
+	}
+
+	.pourcent_bar {
+		order: -1;
+		margin: 0;
+	}
+
+	.pourcent_wrapper div:first-child {
+		/* order: 2; */
+		flex: 1 0 0;
+		text-align: left;
+	}
+
+	.pourcent_wrapper div:last-child {
+		/* order: 3; */
+		flex: 1 0 0;
+		text-align: right;
+	}
+
+	.big_pourcent {
+		font-size: 20px;
+	}
+}
+
+@media screen and (max-width: 500px) {
+	
+	.dysco_div img {
+		max-width: 45%;
+		margin-top: 15px;
+		margin-right: 8px;
+	}
+
+	ul {
+		padding-left: 0;
+	}
+
+	.result_subtitle {
+		padding: 20px 0;
+	}
+
+	.IN-widget button {
+		margin: 5px;
+	}
+	
+	.twitter-share-button {
+		margin: 5px;
+	}
+	
+	.fb-share-button {
+		margin: 5px;
+	}
+
+	.contact_email {
+		padding: 15px 10px;
+	}
 }

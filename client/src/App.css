@@ -74,13 +74,6 @@ button > * {
   box-shadow: rgb(0, 114, 214) 0px 2px;
 }
 
-/* .is-invalid {
-  position: relative;
-  width:10px;
-  height: 10px;
-  background-color: red;
-} */
-
 .is-invalid + .invalid-feedback {
   display: block;
   color: #cc2525;

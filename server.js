@@ -3,9 +3,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
 
-// mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true });
 mongoose
-  .connect("mongodb+srv://dbAdminUser:bWIf5jbVhdsJM5ww@clustersherlock.trfr9.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true } )
+  .connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true } )
   .then(() => {
     console.log("Connected to mongoDB");
   })
@@ -41,6 +40,3 @@ app.get("*", (req, res) => {
 //Définition et mise en place du port d'écoute
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
-
-// dbAdminUser
-// bWIf5jbVhdsJM5ww

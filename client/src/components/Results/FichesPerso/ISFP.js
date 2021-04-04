@@ -1,5 +1,5 @@
-export const ISTJ_fiche = [
-	{ type:"title", content:"ISTJ – The Duty Fulfiller" },
+export const ISFP_fiche = [
+	{ type:"title", content:"ISFP – The Artist" },
 	"Calme et sérieux, vous atteignez vos buts grâce à votre minutie et votre fiabilité. Vous êtes concrets, factuels, réalistes et responsables. Vous avez la capacité de décider logiquement ce qui doit être fait et vous le suivez méthodiquement, sans vous laisser distraire, ce qui vous permet généralement d’atteindre avec succès tous vos objectifs. A vos yeux, les traditions, la loyauté et l’honnêteté sont d’une grande valeur. Vous avez aussi un fort sens du devoir.",
 	"Vous êtes stimulé par la réflexion sur vos idées et expériences, et vous tirez votre énergie du monde des idées, des émotions et des impressions. Vous arrivez à des conclusions par la réflexion. Secret et réservé, vous prenez néanmoins les initiatives quand la situation vous parait vraiment importante.",
 	"Bien que vous preniez généralement les choses très au sérieux, vous avez aussi un sens de l'humour décalé et vous pouvez être très amusants, en particulier lors de réunions familiales ou professionnelles.",

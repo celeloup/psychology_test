@@ -2,7 +2,7 @@ import React from "react";
 import { Button, FormGroup, FormControl, Form} from "react-bootstrap";
 import API from "../../utils/API";
 import "./Annexe.css";
-// import { DragAndDrop } from "./DragAndDrop/DragAndDrop.js";
+import { DragAndDrop } from "./DragAndDrop/DragAndDrop.js";
 import Login from "../Login/Login.js";
 import Error401 from "../Errors/Error401";
 import Error500 from "../Errors/Error500";
@@ -16,26 +16,13 @@ export class Annexe extends React.Component {
 		frequence_science: "",
 		exactitude_connaissance: "",
 		respect_directives_sanitaires: "",
-		raisons_respect: "",
+		raisons_respect: [],
 		isLoading: true,
 		showOther: false,
+		idOther: -1,
 		errors: [],
 		errorPage: ""
 	};
-	// send = async () => {
-	// 	const { email, connais_dilemme, preoccupation_epidemie, frequence_infos, frequence_science, exactitude_connaissance, respect_directives_sanitaires, raisons_respect } = this.state;
-	// 	if (!connais_dilemme || connais_dilemme.length === 0) {
-	// 		console.log("invalid form");
-	// 		return;
-	// 	}
-	// 	try {
-	// 		await API.update_annexe(email, connais_dilemme, preoccupation_epidemie,
-	// 			frequence_infos, frequence_science, exactitude_connaissance, respect_directives_sanitaires, raisons_respect);
-	// 		window.location = "/mbti";
-	// 	} catch (error) {
-	// 		console.error(error);
-	// 	}
-	// };
 	handleChange = (event) => {
 		this.setState({
 			[event.target.id]: event.target.value	
@@ -137,8 +124,10 @@ export class Annexe extends React.Component {
 			errors.push("exactitude_connaissance");
 		if (this.state.respect_directives_sanitaires === "")
 			errors.push("respect");
-		if (this.state.raisons_respect === "")
+		if (this.state.raisons_respect.length === 0) 
 			errors.push("raisons_respect");
+		if (this.state.raisons_respect.includes("Autre (précisez ci-dessous)") || this.state.raisons_respect.includes(""))
+			errors.push("empty_other");
 		this.setState({
 			errors: errors
 		});
@@ -169,21 +158,29 @@ export class Annexe extends React.Component {
 		}
 	};
 
-	// DRAG AND DROP
-	allowDrop = (ev) => {
-		ev.preventDefault();
-	};
-	  
-	drag = (ev) => {
-		ev.dataTransfer.setData("text", ev.target.id);
-	};
-	
-	drop = (ev) => {
-		ev.preventDefault();
-		var data = ev.dataTransfer.getData("text");
-		ev.target.appendChild(document.getElementById(data));
+	changeRaisonsRespect = (raisons) => {
+		var other;
+		var index;
+		var other_value = "";
+		if (raisons.includes("Autre (précisez ci-dessous)")) {
+			if (this.state.showOther === true)
+				other_value = this.state.raisons_respect[this.state.idOther];
+			other = true;
+			index = raisons.indexOf("Autre (précisez ci-dessous)");
+		} else {
+			other = false;
+			index = raisons.indexOf("Autre (précisez ci-dessous)");
+		}
+		if (other_value)
+			raisons[index] = other_value;
+		this.setState({raisons_respect: raisons, showOther: other, idOther: index});
 	};
 
+	handleChangeOther = (event) => {
+		var list = this.state.raisons_respect;
+		list[this.state.idOther] = event.target.value;
+		this.setState({raisons_respect: list});
+	}
 
 	render () {
 		if (this.state.errorPage === "401")
@@ -192,6 +189,7 @@ export class Annexe extends React.Component {
 			return (<Error500></Error500>)
 		if (!this.state.email)
 			return (<Login onClose={null} show={true} closable={false}></Login>);
+		console.log(this.state.raisons_respect);
 		return (
 			<div className="page_wrapper annexe questionnaire">
 				<h3 className="partie">- Partie <span className="blue">3</span>/4 -</h3>
@@ -351,59 +349,38 @@ export class Annexe extends React.Component {
 						<i className="fas fa-exclamation-circle"></i> Veuillez choisir une option.
             		</Form.Control.Feedback>
 				</FormGroup>
-				<p className="question"><span>g.</span> Pour quelle raison avez-vous respecté ces directives ? 
+				<p className="question"><span>g.</span> Pour quelle(s) raison(s) avez-vous respecté ces directives ? <i>(Choisissez une ou plusieurs réponses et classez les selon votre ordre de préférence)</i>
 				</p>
 				<FormGroup controlId="raisons_respect" className={
 								this.hasError("raisons_respect")
 								  ? "is-invalid"
 								  : ""
 							  }>
-					<FormControl
-						onChange={this.handleChange}
-						as="select"
-						defaultValue={'DEFAULT'}
-						className={
-							this.state.raisons_respect === ""
-							? "empty-select"
-							: ""
-						}
-						>
-							<option value="DEFAULT" disabled>Choisir</option>
-							<option value="Se protéger soi-même">Se protéger soi-même</option>
-							<option value="Protéger sa famille">Protéger sa famille</option>
-							<option value="Protéger les autres">Protéger les autres</option>
-							<option value="Combattre l'épidémie">Combattre l'épidémie</option>
-							<option value="Pour ne pas avoir d'amendes">Pour ne pas avoir d'amendes</option>
-							<option value="Par rapport au regard des autres">Par rapport au regard des autres</option>
-							<option value="Autre" >Autre (Préciser ci-dessous)</option>
-					</FormControl>
+					<div id="drag_drop_wrapper">
+						<DragAndDrop onChangeRaison={this.changeRaisonsRespect}></DragAndDrop>
+					</div>
+					<Form.Control.Feedback type="invalid" >
+						<i className="fas fa-exclamation-circle"></i> Veuillez classer vos réponses dans la partie dédiée.
+					</Form.Control.Feedback>
+					</FormGroup>
 					{this.state.showOther && 
-					<FormControl
-            			onChange={this.handleChange}
-						placeholder="Précisez"
+					<FormGroup className={
+						this.hasError("empty_other")
+						  ? "is-invalid"
+						  : ""
+					  }><FormControl id="other_input_annexe"
+						onChange={this.handleChangeOther}
+						placeholder="Précisez votre réponse"
 						className={
-							this.state.raisons_respect === ""
+							this.state.raisons_respect.includes("Autre (précisez ci-dessous)") || this.state.raisons_respect.includes("")
 							? "other-input empty-select"
 							: "other-input"
 						}
-          			/>}
+					/>
 					<Form.Control.Feedback type="invalid" >
-						<i className="fas fa-exclamation-circle"></i> Veuillez choisir une option.
-            		</Form.Control.Feedback>
-				</FormGroup>
-
-				{/* DRAG AND DROP */}
-
-				{/* <DragAndDrop /> */}
-				{/* <div id="drag_question">
-					<div id="dd_first" onDrop={this.drop} onDragOver={this.allowDrop} className="drag_box">
-						<div id="test" className="drag_object" draggable="true" onDragStart={this.drag}>Se protéger soi-même</div>
-						<div id="test1" className="drag_object" draggable="true" onDragStart={this.drag}>Protéger les autres</div>
-					</div>
-					<div id="dd_second" onDrop={this.drop} onDragOver={this.allowDrop} className="drag_box">
-					
-					</div>
-				</div> */}
+						<i className="fas fa-exclamation-circle"></i> Veuillez préciser votre réponse.
+					</Form.Control.Feedback></FormGroup >}
+				
 					<Button block type="submit" className="next_button">
 						Continuer <i className="fas fa-chevron-right"></i>
 					</Button>
@@ -411,4 +388,4 @@ export class Annexe extends React.Component {
 			</div>
 		)
 	};
-}
+}					

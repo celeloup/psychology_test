@@ -1,9 +1,7 @@
 import axios from "axios";
-// const jwt = require("jwt-simple");
 const headers = {
   "Content-Type": "application/json"
 };
-// const burl = "http://localhost:5000";
 
 const API = {
   login_admin(user, password) {
@@ -91,18 +89,6 @@ const API = {
       { headers: headers }
     );
   }
-  // signup: function(send) {
-  //   return axios.post(`${burl}/user/signup`, send, { headers: headers });
-  // },
-  // 
-  // logout: function() {
-  //   localStorage.clear();
-  // },
-  // getUsers: function() {
-  //   return axios.get(
-  //     `${burl}/api/users`,
-  //   )
-  // }
 };
 
 export default API;
