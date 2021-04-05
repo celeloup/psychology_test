@@ -17,11 +17,10 @@ export class Home extends React.Component {
 		});
 	  };
 	render() {
-		// window.scrollTo(0, 0);
 		return (
 			<div className="page_wrapper">
 				<Login onClose={this.showLogin} show={this.state.show} closable></Login>
-				<div id="home">
+				<div id="home" className={this.state.show === true ? "hide" : ""}>
 					<h1 id="home_title">Etude de psychologie sur l'effet du cadre</h1>
 					
 					<p id="presentation_text">

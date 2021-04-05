@@ -15,19 +15,6 @@ export default class Login extends React.Component {
 	componentDidMount() {
 		window.scrollTo(0, 0);
 	};
-	// send = async () => {
-	// 	const { email } = this.state;
-	// 	if (!email || email.length === 0) {
-	// 	return;
-	// 	}
-	// 	try {
-	// 		const { data } = await API.login(email);
-	// 		sessionStorage.setItem("email", data.data.email);
-	// 		window.location = "/results";
-	// 	} catch (error) {
-	// 		console.error(error);
-	// 	}
-	// };
 	onClose = e => {
 		e.stopPropagation();
 		var scroll = document.getElementsByClassName("page_wrapper")[0].style.top;
