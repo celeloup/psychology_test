@@ -58,16 +58,16 @@ button > * {
   outline: none;
   border-radius: 0px;
   font-size: 22px;
-  -webkit-text-fill-color: rgba(0, 114, 214);
+  -webkit-text-fill-color: rgba(0, 114, 214) !important;
   animation: 1ms ease 0s 1 normal none running native-autofill-in;
   transition: background-color 1e+08s ease 0s, box-shadow 0.1s ease-out 0s;
-  box-shadow: rgb(0 114 214 / 30%) 0px 1px;
+  box-shadow: rgb(0 114 214 / 30%) 0px 1px !important;
   background-color: transparent !important;
-  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: transparent !important;
 }
 
 .form-group input[value=""] {
-  -webkit-text-fill-color: rgba(0, 114, 214, 0.6);
+  -webkit-text-fill-color: rgba(0, 114, 214, 0.6) !important;
 }
 
 .form-control:focus {
