@@ -61,6 +61,8 @@ button > * {
   -webkit-text-fill-color: rgba(0, 114, 214) !important;
   animation: 1ms ease 0s 1 normal none running native-autofill-in;
   transition: background-color 1e+08s ease 0s, box-shadow 0.1s ease-out 0s;
+  -webkit-box-shadow: rgb(0 114 214 / 30%) 0px 1px !important;
+  -moz-box-shadow: rgb(0 114 214 / 30%) 0px 1px !important;
   box-shadow: rgb(0 114 214 / 30%) 0px 1px !important;
   background-color: transparent !important;
   -webkit-tap-highlight-color: transparent !important;
