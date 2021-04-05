@@ -38,7 +38,7 @@ export class Home extends React.Component {
 					
 					
 				</div>
-				<div id="button_wrapper">
+				<div id="button_wrapper" className={this.state.show === true ? "hide" : ""}>
 						<Button id="start_button" onClick={() => this.props.history.push('/questions')}>Commencer <i className="fas fa-chevron-right"></i></Button>
 						<Button id="login_button" onClick={e => {this.showLogin();}}>Déjà répondu ?</Button>
 				</div>
