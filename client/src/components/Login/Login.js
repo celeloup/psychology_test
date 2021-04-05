@@ -17,11 +17,11 @@ export default class Login extends React.Component {
 	};
 	onClose = e => {
 		e.stopPropagation();
-		var scroll = document.getElementsByClassName("page_wrapper")[0].style.top;
-		document.getElementsByClassName("page_wrapper")[0].style.position = "inherit";
-		document.getElementsByTagName("html")[0].style.scrollBehavior = "initial";
-		window.scrollTo(0, -parseInt(scroll));
-		document.getElementsByTagName("html")[0].style.scrollBehavior = "smooth";
+		// var scroll = document.getElementsByClassName("page_wrapper")[0].style.top;
+		// document.getElementsByClassName("page_wrapper")[0].style.position = "inherit";
+		// document.getElementsByTagName("html")[0].style.scrollBehavior = "initial";
+		// window.scrollTo(0, -parseInt(scroll));
+		// document.getElementsByTagName("html")[0].style.scrollBehavior = "smooth";
     	this.props.onClose && this.props.onClose(e);
   	};
 	handleChange = (event) => {
@@ -84,12 +84,12 @@ export default class Login extends React.Component {
 		if (!this.props.show) {
 			return null;
 		}
-		if (window.innerWidth < 560)
-		{
-			var scroll = window.scrollY;
-			document.getElementsByClassName("page_wrapper")[0].style.position = "fixed";
-			document.getElementsByClassName("page_wrapper")[0].style.top = -scroll + "px";
-		}
+		// if (window.innerWidth < 560)
+		// {
+		// 	var scroll = window.scrollY;
+		// 	document.getElementsByClassName("page_wrapper")[0].style.position = "fixed";
+		// 	document.getElementsByClassName("page_wrapper")[0].style.top = -scroll + "px";
+		// }
 		return (
 			<div id="login_wrapper">
 				<div id="login">
