@@ -193,6 +193,13 @@ Button i {
   .two_choice_input .btn {
     font-size: 22px;
   }
+
+  .questionnaire .form-group input, #login .form-group input {
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+    border-bottom: 1px solid rgb(0 114 214 / 30%);
+  }
 }
 
 @media screen and (max-height: 500px) {
