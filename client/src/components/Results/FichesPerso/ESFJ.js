@@ -29,6 +29,6 @@ export const ESFJ_fiche = [
 		"Ont besoin de l'approbation des autres",
 		"Ressentent de la satisfaction en donnant aux autres",
 		"Vivent dans l’instant présent",
-		"-N'aiment pas théoriser sur l'avenir."
+		"N'aiment pas théoriser sur l'avenir."
 	]}
 ];

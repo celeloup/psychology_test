@@ -32,6 +32,6 @@ export const INFP_fiche = [
 		"Ont d'excellentes compétences en communication écrite",
 		"Préfèrent travailler seul, et peuvent avoir des problèmes à travailler en équipe",
 		"Valorisent les relations profondes et authentiques",
-		"-Veulent être vus et appréciés pour qui ils sont."
+		"Veulent être vus et appréciés pour qui ils sont."
 	]}
 ];

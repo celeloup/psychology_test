@@ -31,6 +31,6 @@ export const ESTP_fiche = [
 		"Ont une excellente capacité à voir un problème immédiat et à concevoir rapidement une solution",
 		"Sont attirés par l'aventure et le risque",
 		"Peuvent être flashy",
-		"-Aiment initier les choses sans nécessairement les suivre jusqu'à leur achèvement."
+		"Aiment initier les choses sans nécessairement les suivre jusqu'à leur achèvement."
 	]}
 ];

@@ -31,6 +31,6 @@ export const ENFP_fiche = [
 		"Résistent au contrôle des autres",
 		"Peuvent travailler de manière logique et rationnelle",
 		"Utilisent leur intuition pour comprendre l'objectif et y travailler",
-		"-Sont habituellement capables de saisir des concepts et des théories difficiles."
+		"Sont habituellement capables de saisir des concepts et des théories difficiles."
 	]}
 ];
