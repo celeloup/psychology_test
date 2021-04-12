@@ -126,8 +126,8 @@ export class DragAndDrop extends Component {
 
             if (source.droppableId === 'droppable2') {
                 state = { selected: items };
+                this.handleChange(items);
             }
-            this.handleChange(items);
             this.setState(state);
         } else { // DROP DANS DIFFERENT
             const result = move(

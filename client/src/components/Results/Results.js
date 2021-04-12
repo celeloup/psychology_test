@@ -24,6 +24,7 @@ import { HashLink as Link } from 'react-router-hash-link';
 import Error401 from "../Errors/Error401";
 import Error500 from "../Errors/Error500";
 import DyscoLogo  from "../../img/DysCo.png";
+import { FacebookShareButton, FacebookIcon, TwitterShareButton, TwitterIcon, LinkedinShareButton, LinkedinIcon, WhatsappShareButton, WhatsappIcon} from "react-share";
 
 const List = ({ type, liste }) => (
 	<div>
@@ -140,36 +141,67 @@ export class Results extends React.Component {
 		{
 			return(
 				<div className="page_wrapper results">
-					<h3 className="partie">Votre type est</h3>
-					<h1 className="big_title">{ this.state.fiche[0].content }</h1>
-					<p id="fiche_presentation">{ this.state.fiche[1] }</p>
-					<div id="pourcentages_mbti">
-						<p id="pourcent_intro">La répartition de vos traits de personnalité <Link to="#explications_type"><i className="fas fa-info-circle"></i></Link></p>
-						<PourcentBar trait_a={user.mbti.i} trait_b={user.mbti.e} trait_name_a="INTROVERTI" trait_name_b="EXTRAVERTI" color="rgb(0, 114,214, 0.8)"></PourcentBar>
-						<PourcentBar trait_a={user.mbti.n} trait_b={user.mbti.s} trait_name_a="SENSATION" trait_name_b="INTUITION" color="#f1bc71"></PourcentBar>
-						<PourcentBar trait_a={user.mbti.t} trait_b={user.mbti.f} trait_name_a="PENSEE" trait_name_b="SENTIMENT" color="#57ad8b"></PourcentBar>
-						<PourcentBar trait_a={user.mbti.j} trait_b={user.mbti.p} trait_name_a="JUGEMENT" trait_name_b="PERCEPTION" color="#8f749c"></PourcentBar>
-					</div>
-					{ this.state.fiche.map((elem, index) => {
-						if (index > 1 && !elem.type)
-							return (<p key={index}>{elem}</p>)
-						else if (elem.type === "quote")
-							return (<div key={index} className="quote_result"><p>{elem.content}</p><span className="quote_source">{elem.source}</span></div>)
-						else if (elem.type === "subtitle")
-							return (<h3 key={index} className="result_subtitle">{elem.content}</h3>)
-						else if (elem.type === "list")
-							return (<List key={index} liste={elem.content} type={user.mbti.type}></List>)
-						return null;
-					})}
+					{this.state.fiche !== null &&
+					<div>
+						<h3 className="partie">Votre type est</h3>
+						<h1 className="big_title">{ this.state.fiche[0].content }</h1>
+						<p id="fiche_presentation">{ this.state.fiche[1] }</p>
+						<div id="pourcentages_mbti">
+							<p id="pourcent_intro">La répartition de vos traits de personnalité <Link to="#explications_type"><i className="fas fa-info-circle"></i></Link></p>
+							<PourcentBar trait_a={user.mbti.i} trait_b={user.mbti.e} trait_name_a="INTROVERTI" trait_name_b="EXTRAVERTI" color="rgb(0, 114,214, 0.8)" type={user.mbti.type}></PourcentBar>
+							<PourcentBar trait_a={user.mbti.n} trait_b={user.mbti.s} trait_name_a="INTUITION" trait_name_b="SENSATION" color="#f1bc71" type={user.mbti.type}></PourcentBar>
+							<PourcentBar trait_a={user.mbti.t} trait_b={user.mbti.f} trait_name_a="PENSEE" trait_name_b="SENTIMENT" color="#57ad8b" type={user.mbti.type}></PourcentBar>
+							<PourcentBar trait_a={user.mbti.j} trait_b={user.mbti.p} trait_name_a="JUGEMENT" trait_name_b="PERCEPTION" color="#8f749c" type={user.mbti.type}></PourcentBar>
+						</div>
+						{ this.state.fiche.map((elem, index) => {
+							if (index > 1 && !elem.type)
+								return (<p key={index}>{elem}</p>)
+							else if (elem.type === "quote")
+								return (<div key={index} className="quote_result"><p>{elem.content}</p><span className="quote_source">{elem.source}</span></div>)
+							else if (elem.type === "subtitle")
+								return (<h3 key={index} className="result_subtitle">{elem.content}</h3>)
+							else if (elem.type === "list")
+								return (<List key={index} liste={elem.content} type={user.mbti.type}></List>)
+							return null;
+						})}
+					</div>}
+					{/* TYPE INCORRECT */}
+					{this.state.fiche === null &&
+					<div id="fiche_bg">
+						<h3 className="partie">Votre type est</h3>
+						{ this.state.user.infos_perso.sexe === "Femme" && <h1 className="big_title"> Belle gosse </h1>}
+						{ this.state.user.infos_perso.sexe === "Homme" && <h1 className="big_title"> Beau gosse </h1>}
+						<p id="fiche_presentation">Les beaux gosses sont des gens beaux (duh), compréhensifs et anti-conformistes. On leur donne une consigne et ils n'en font qu'à leur tête ! Mais on les aime quand même parce que ce sont un peu les meilleurs !</p>
+						<div id="bg_img">
+							<img src="https://media.giphy.com/media/wFOC9RazP97i0/source.gif" alt="toi = best"></img>
+							<p id="under_bg_img">"You rock &#60;3"</p>
+						</div>
+						<p>Malheureusement, les réponses à votre questionnaire n'ont pas permis de déterminer quel était votre type parmi les 16 personnalités décrites dans le test MBTI.</p>
+						<p>Est-ce parce que vous êtes totalement unique ? Est-ce parce que vous avez donné trop de réponses neutres au test ? Who knows ? </p>
+						<p>Il se peut aussi que ce soit un bug du site/test donc si vous pensez avoir répondu correctement au test, n'hésitez pas à envoyer un mail à l'adresse donnée plus bas sur cette page pour le signaler et nous reviendrons vers vous !</p>
+						<p>Vous pouvez également repasser cette partie du questionnaire si vous le souhaitez et espérer un résultat différent !</p>
+						<button className="next_button" onClick={() => this.props.history.push('/mbti')}>Repasser le test<i className="fas fa-redo"></i></button>
+					</div>}
 					<div id="explications_type">
-						<p>EXPLICATIONS DES TYPES ICI</p>
+						<h2 className="result_subtitle">A propos du test MBTI</h2>
+						<p>Ce test est inspiré du test de personnalité appelé MBTI (Myers Briggs Type Indicator), proposé en 1962 par Isabel Briggs Myers et Katherine Cook Briggs et largement utilisé en psychologie. C’est un outil d’évaluation psychologique qui permet de déterminer quel est le type psychologique d’une personne, parmi 16 types différents.</p>
+						<p>Il s’intéresse à quatre axes de votre personnalité, et identifie votre « dominante psychologique », c’est-à-dire votre préférence ; Cela signifie que même si vous obtenez une préférence dans un axe de votre personnalité, vous pouvez tout de même être capable d’utiliser une autre orientation de cet axe. Par exemple, dans l’axe « orientation de votre énergie », même si vous obtenez « extraverti », cela ne signifie pas que vous n’êtes pas capable de porter votre énergie vers votre monde intérieur comme un « introverti », simplement que votre premier instinct est de diriger votre énergie vers le monde extérieur.</p>
+						<p>Les axes étudiés par ce test sont :</p>
+						<ul>
+						<li>La façon d’orienter votre énergie, mais aussi de la recevoir, ce qui retient votre attention. Vous pouvez être « Extraverti E » ou « Introverti I ».</li>
+						<li>La manière dont vous percevez les informations, dont vous en prenez conscience et les recueillez. Vous pouvez être « Sensation S » ou « Intuition N ». </li>
+						<li>La façon dont vous prenez des décisions et parvenez à des conclusions. Vous pouvez être « Pensée T » ou « Sentiment F ». </li>
+						<li>La façon dont vous abordez et gérez le monde extérieur. Vous pouvez être « Jugement J » ou « Perception P ». </li>
+						</ul>
+						<p>Votre type final, déterminé par vos réponses au questionnaire, est donc représenté par un code à 4 lettres, chacune représentant l’une de vos préférence sur les 4 différents axes. Par exemple, le code ISTJ donne la personnalité «The Duty Fulfiller».</p>
 					</div>
 					<h3 className="thankyou">Merci beaucoup d'avoir répondu à ce questionnaire !</h3>
 					<h4>Partager ce questionnaire sur les réseaux</h4>
 					<div id="sharing_buttons">
-						<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" className="twitter-share-button" data-size="large" data-text="Aidez une étudiante en master de psycho en répondant à ce questionnaire rapide ! Bonus: Découvrez votre type de personnalité !" data-url="https://paris8dysco.herokuapp.com/" data-lang="fr" data-show-count="false">Tweet</a>
-						<div className="fb-share-button" data-href="https://paris8dysco.herokuapp.com/" data-layout="button" data-size="large"><a target="_blank" rel="noreferrer" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fparis8dysco.herokuapp.com%2F&amp;src=sdkpreparse" className="fb-xfbml-parse-ignore">Partager</a></div>
-						<script type="IN/Share" data-url="https://www.linkedin.com"></script>
+						<FacebookShareButton url={"https://paris8dysco.herokuapp.com/"}> <FacebookIcon size={35} borderRadius={5}></FacebookIcon> </FacebookShareButton>
+						<TwitterShareButton url={"https://paris8dysco.herokuapp.com/"} title={"Aidez une étudiante en master de psycho en répondant à ce questionnaire rapide ! Bonus: Découvrez votre type de personnalité !"}> <TwitterIcon size={35} borderRadius={5}></TwitterIcon> </TwitterShareButton>
+						<LinkedinShareButton url={"https://paris8dysco.herokuapp.com/"}> <LinkedinIcon size={35} borderRadius={5}></LinkedinIcon> </LinkedinShareButton>
+						<WhatsappShareButton url={"https://paris8dysco.herokuapp.com/"}> <WhatsappIcon size={35} borderRadius={5}></WhatsappIcon> </WhatsappShareButton>
 					</div>
 					<h4>Pour me contacter</h4>
 

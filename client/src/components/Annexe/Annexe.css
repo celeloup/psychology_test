@@ -178,6 +178,20 @@
 	margin-bottom: 15px;
 }
 
+#drag_drop_indication_mobile {
+	font-weight: 500;
+	display: inline-block;
+	width: 100%;
+	text-align: center;
+	margin-top: 15px;
+	margin-bottom: 0;
+	font-size: 15px;
+}
+
+#drag_drop_wrapper {
+	margin-top: 10px;
+}
+
 @media screen and (max-width: 500px) {
 	.opinion_scale .btn {
 		font-size: 22px;
@@ -217,5 +231,5 @@
 		padding: 0 !important;
 		margin-right: 5px;
 	}
-
+	
 }

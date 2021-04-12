@@ -141,26 +141,13 @@
 
 #sharing_buttons {
 	display:flex;
-	align-items:center;
 	justify-content: center;
 }
 
-.IN-widget button {
-	width: 90px;
-	height: 28px !important;
-	margin: 10px;
-	padding: 4px 0 !important;
-	font-size: 14px !important;
-	border-radius: 4px !important;
+#sharing_buttons button {
+	margin: 8px;
 }
 
-.twitter-share-button {
-	margin: 10px;
-}
-
-.fb-share-button {
-	margin: 10px;
-}
 
 .thankyou {
 	color: rgb(0, 114, 214, 0.8);
@@ -277,6 +264,45 @@ h4 {
 	margin-bottom: -30px;
 }
 
+#explications_type {
+	margin-bottom: 60px;
+	padding: 0 100px;
+	text-align: justify;
+	
+}
+
+#explications_type p {
+	font-size: 16px;
+}
+
+#explications_type ul {
+	margin-bottom: 20px;
+	padding-left: 10px;
+}
+
+#fiche_bg p {
+	font-size: 16px;
+}
+
+#bg_img img {
+	max-width: 500px;
+	width: 100%;
+}
+
+#bg_img {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+#under_bg_img {
+	margin-top: 10px;
+	font-weight: 500;
+	font-size: 35px !important;
+}
 
 @media screen and (max-width: 720px) {
 
@@ -341,19 +367,12 @@ h4 {
 		padding: 20px 0;
 	}
 
-	.IN-widget button {
-		margin: 5px;
-	}
-	
-	.twitter-share-button {
-		margin: 5px;
-	}
-	
-	.fb-share-button {
-		margin: 5px;
-	}
-
 	.contact_email {
 		padding: 15px 10px;
+	}
+
+	#explications_type {
+		padding: 0;
+		text-align: left;
 	}
 }

@@ -54,21 +54,6 @@ export class Dashboard extends React.Component {
 	}
 	return ([women, men]);
   };
-//   countTypes = () => {
-// 	var infp = 0;
-// 	var esfp = 0;
-// 	var 
-// 	for (var i = 0; i < this.state.users.length; i++)
-// 	{
-// 		if(this.state.users[i].infos_perso.sexe === "Femme")
-// 			women++;
-// 		else if (this.state.users[i].infos_perso.sexe === "Homme")
-// 			men++;
-// 	}
-// 	return ([women, men]);
-//   }
-
-
   render() {
     if (this.state.errorPage === "401")
 			return (<Error401></Error401>)
@@ -98,7 +83,7 @@ export class Dashboard extends React.Component {
 		
 		for(var e = 0; e < data.length; e++)
 		{ myTotal += data[e]; }
-		var labels = [data[0]/myTotal * 100 + '%', data[1]/myTotal * 100 + '%'];
+		var labels = [Math.round(data[0]/myTotal * 100)+ '%', Math.round(data[1]/myTotal * 100) + '%'];
 		var off = 10
 		var w = (200 - off) / 2
 		var h = (200 - off) / 2

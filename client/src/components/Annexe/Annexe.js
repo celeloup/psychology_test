@@ -163,6 +163,7 @@ export class Annexe extends React.Component {
 		var index;
 		var other_value = "";
 		if (raisons.includes("Autre (précisez ci-dessous)")) {
+			console.log(raisons);
 			if (this.state.showOther === true)
 				other_value = this.state.raisons_respect[this.state.idOther];
 			other = true;
@@ -189,7 +190,7 @@ export class Annexe extends React.Component {
 			return (<Error500></Error500>)
 		if (!this.state.email)
 			return (<Login onClose={null} show={true} closable={false}></Login>);
-		console.log(this.state.raisons_respect);
+		// console.log(this.state.raisons_respect);
 		return (
 			<div className="page_wrapper annexe questionnaire">
 				<h3 className="partie">- Partie <span className="blue">3</span>/4 -</h3>
@@ -351,6 +352,7 @@ export class Annexe extends React.Component {
 				</FormGroup>
 				<p className="question"><span>g.</span> Pour quelle(s) raison(s) avez-vous respecté ces directives ? <i>(Choisissez une ou plusieurs réponses et classez les selon votre ordre de préférence)</i>
 				</p>
+				<p id="drag_drop_indication_mobile">[ Pour déplacer un item, saisissez-le en restant appuyé dessus puis relâchez. ]</p>
 				<FormGroup controlId="raisons_respect" className={
 								this.hasError("raisons_respect")
 								  ? "is-invalid"
@@ -360,7 +362,7 @@ export class Annexe extends React.Component {
 						<DragAndDrop onChangeRaison={this.changeRaisonsRespect}></DragAndDrop>
 					</div>
 					<Form.Control.Feedback type="invalid" >
-						<i className="fas fa-exclamation-circle"></i> Veuillez classer vos réponses dans la partie dédiée.
+						<i className="fas fa-exclamation-circle"></i> Veuillez déposer et classer vos réponses dans la partie dédiée.
 					</Form.Control.Feedback>
 					</FormGroup>
 					{this.state.showOther && 
