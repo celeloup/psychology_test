@@ -11,7 +11,7 @@ import Error500 from "../Errors/Error500";
 export class MBTI extends React.Component {
 	state = {
 		email: sessionStorage.getItem("email"),
-		reponses: Array.apply(null, Array(questions.length)).map(function () {return 0}),
+		reponses: Array.apply(null, Array(questions.length)).map(function () {return null}),
 		currentPage: 1,
 		questionsPerPage: 10,
 		errorPage: "",

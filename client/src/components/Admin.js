@@ -9,7 +9,6 @@ export class Admin extends React.Component {
 	send = (event) => {
 		event.preventDefault();
 		const { user, password } = this.state;
-		console.log(user, password, process.env.REACT_APP_ADMIN_USERNAME);
 		if (!user || user.length === 0)
 			return;
 		if (!password || password.length === 0)
@@ -18,10 +17,6 @@ export class Admin extends React.Component {
 		{
 			sessionStorage.setItem("token", "admin_token");
 			window.location = "/dashboard";
-		}
-		else
-		{
-			console.log("wrong !");
 		}
 	};
 	handleChange = (event) => {
