@@ -6,13 +6,13 @@
 [Stack & Architecture](#stack--architecture)  
 [Features](#features)
 
-<p align="center"><img src="/assets/screenshot_landing.png"/></p>
+<p align="center"><img src="/assets/screenshot_landing.png" width="650"/></p>
 
 ## What is it ?
 
 A personnal project for the end of study memoire of a friend studying psychology. The app is a simple questionnaire to collect data for a **_psychology study_**, with the possibility for the user to retrieve its results or continue where they left off easily by referencing their email. It also features an *admin view*, displaying all the answers, some basic statistics and the possibility to download the data in `.xlxs` format for future processing. The questionnaire is actually 4 different questionnaires with slightly different questions, given to the user based on its ID. Each questionnaire also features a MBTI test.
 
-<p align="center"><img src="/assets/mbti_example.gif"/></p>
+<p align="center"><img src="/assets/mbti_example.gif" width="650"/></p>
 
 
 ## Stack & Architecture
